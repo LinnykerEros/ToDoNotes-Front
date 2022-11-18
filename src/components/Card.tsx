@@ -39,7 +39,7 @@ function Card({ title, description, content, id }: CardProps) {
           mb="1rem"
           colorScheme="blue"
         >
-          Ver mais informaçoes
+          Ver mais informações
         </Button>
       </Box>
     </Box>
