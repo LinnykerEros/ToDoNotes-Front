@@ -13,7 +13,14 @@ interface CardProps {
 function Card({ title, description, content, id }: CardProps) {
   const navigate = useNavigate();
   return (
-    <Box bg="#0d0d0d" cursor="pointer" borderRadius="8px" gap="1rem">
+    <Box
+      bg="#0d0d0d"
+      cursor="pointer"
+      borderRadius="8px"
+      gap="1rem"
+      transition="0.3s"
+      _hover={{ transform: "scale(1.1)" }}
+    >
       <Box
         mt="1rem"
         width="12rem"
