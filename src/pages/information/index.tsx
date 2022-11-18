@@ -34,13 +34,15 @@ interface NoteProps {
 
 function Information() {
   moment.locale("pt-br");
+  const date = moment().format("MMM Do YY");
   const notify = new Notyf({ duration: 3000 });
   const navigate = useNavigate();
+
   const { id } = useParams();
-  const [note, setNote] = useState({} as NoteProps);
-  const date = moment().format("MMM Do YY");
   const { user } = useContext(AuthContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const [note, setNote] = useState({} as NoteProps);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [content, setContent] = useState("");

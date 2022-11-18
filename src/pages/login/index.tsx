@@ -5,12 +5,13 @@ import { Input } from "../../components/Input";
 import { useNavigate } from "react-router-dom";
 // import { getUser } from "../../services/userService";
 
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 
 import { AuthContext } from "../../context/AuthContext";
 import logoToDo from "../../assets/todo.svg";
 function SignIn() {
   const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 

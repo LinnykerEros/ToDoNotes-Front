@@ -21,10 +21,12 @@ import { TEXTS } from "../../utils/constants";
 
 function Home() {
   const token = Cookies.get("reactauth.token");
-  const { user, note, fetchNotes } = useContext(AuthContext);
-  const [notes, setNotes] = useState(note);
   const navigate = useNavigate();
+
+  const { user, note, fetchNotes } = useContext(AuthContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const [notes, setNotes] = useState(note);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [content, setContent] = useState("");
