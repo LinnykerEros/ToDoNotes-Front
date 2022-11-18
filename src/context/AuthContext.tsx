@@ -1,6 +1,6 @@
 import { toast } from "react-toastify";
 import Cookies from "js-cookie";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState, ReactNode } from "react";
 import parseJwt from "../utils/parseJwt";
 import { api } from "../config/axios";
 import { Navigate } from "react-router-dom";
@@ -15,13 +15,17 @@ interface AuthContextType {
   note: Array<[]>;
 }
 
+interface AuthProviderProps {
+  children: ReactNode;
+}
+
 interface SignInProps {
   email: string;
   password: string;
 }
 const AuthContext = createContext({} as AuthContextType);
 
-function AuthProvider({ children }: any) {
+function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [note, setNote] = useState([]);
@@ -81,12 +85,10 @@ function AuthProvider({ children }: any) {
         expires: 60 * 60 * 24 * 30,
         path: "/",
       });
-      // console.log(parseJwt(token).id);
+
       setUser(parseJwt(token));
 
       api.defaults.headers["Authorization"] = `Bearer ${token}`;
-
-      // return navigate("/");
     } catch (err: any) {
       toast.error(err.response.data.error, { autoClose: 2000 });
     }
