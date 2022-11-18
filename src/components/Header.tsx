@@ -22,7 +22,7 @@ function Header() {
   const { pathname } = useLocation();
   return (
     <>
-      {pathname === "/" ? (
+      {pathname === "/" || pathname === "/register" ? (
         ""
       ) : (
         <Box
