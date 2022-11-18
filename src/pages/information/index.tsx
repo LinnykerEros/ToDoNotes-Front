@@ -35,7 +35,7 @@ interface NoteProps {
 function Information() {
   moment.locale("pt-br");
   const date = moment().format("MMM Do YY");
-  const notify = new Notyf({ duration: 3000 });
+  const notify = new Notyf({ duration: 2000 });
   const navigate = useNavigate();
 
   const { id } = useParams();

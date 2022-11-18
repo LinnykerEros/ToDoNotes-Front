@@ -1,4 +1,3 @@
-import { toast } from "react-toastify";
 import Cookies from "js-cookie";
 import { createContext, useEffect, useState, ReactNode } from "react";
 import parseJwt from "../utils/parseJwt";
@@ -90,7 +89,7 @@ function AuthProvider({ children }: AuthProviderProps) {
 
       api.defaults.headers["Authorization"] = `Bearer ${token}`;
     } catch (err: any) {
-      toast.error(err.response.data.error, { autoClose: 2000 });
+      console.log(err.response.data.error);
     }
   }
 

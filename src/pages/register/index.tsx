@@ -3,10 +3,14 @@ import { Input } from "../../components/Input";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { createUser } from "../../services/userService";
-import { toast } from "react-toastify";
+
 import { TEXTS } from "../../utils/constants";
+import { Notyf } from "notyf";
+
 export function Register() {
   const navigate = useNavigate();
+  const notify = new Notyf({ duration: 2000 });
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -23,20 +27,15 @@ export function Register() {
 
         await createUser(data);
 
-        toast.success(TEXTS.REGISTER_SUCESS, {
-          autoClose: 2000,
-        });
+        notify.success(TEXTS.REGISTER_SUCESS);
+
         navigate("/");
       } else {
-        toast.error(TEXTS.ERROR, {
-          autoClose: 2000,
-        });
+        notify.error(TEXTS.ERROR);
       }
     } catch (err: any) {
       if (!name || !email || !password) {
-        toast.error(err.response.data.message[0], {
-          autoClose: 2000,
-        });
+        notify.error(TEXTS.ERROR);
       }
     }
   };

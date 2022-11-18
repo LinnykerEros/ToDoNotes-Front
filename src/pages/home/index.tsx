@@ -18,10 +18,26 @@ import { Input } from "../../components/Input";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../context/AuthContext";
 import { TEXTS } from "../../utils/constants";
+import { Notyf } from "notyf";
 
 function Home() {
   const token = Cookies.get("reactauth.token");
   const navigate = useNavigate();
+  const notify = new Notyf({
+    duration: 1000,
+    position: {
+      x: "right",
+      y: "top",
+    },
+    types: [
+      {
+        type: "error",
+        background: "indianred",
+        duration: 2000,
+        dismissible: true,
+      },
+    ],
+  });
 
   const { user, note, fetchNotes } = useContext(AuthContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -47,9 +63,7 @@ function Home() {
 
     try {
       if (!title || !description || !content) {
-        toast.error(TEXTS.ERROR, {
-          autoClose: 2000,
-        });
+        notify.error(TEXTS.ERROR);
       }
       const authorId = user.id;
       const data = {
@@ -61,9 +75,7 @@ function Home() {
 
       await createNote(data);
 
-      toast.success(TEXTS.REGISTER_NOTES, {
-        autoClose: 2000,
-      });
+      notify.success(TEXTS.REGISTER_NOTES);
 
       fetchNotes();
       onClose();
