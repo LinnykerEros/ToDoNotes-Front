@@ -9,11 +9,10 @@ import { getNotes } from "../services/noteService";
 interface AuthContextType {
   signIn: ({ email, password }: SignInProps) => void;
   user: any;
-  userLogged: any;
-  isLoading: any;
-  signOutUser: any;
-  fetchNotes: any;
-  note: any;
+  isLoading: boolean;
+  signOutUser: () => void;
+  fetchNotes: () => void;
+  note: Array<[]>;
 }
 
 interface SignInProps {
@@ -23,9 +22,9 @@ interface SignInProps {
 const AuthContext = createContext({} as AuthContextType);
 
 function AuthProvider({ children }: any) {
-  const [userLogged, setUserLogged] = useState();
   const [user, setUser] = useState();
   const [isLoading, setIsLoading] = useState(false);
+  const [note, setNote] = useState([]);
 
   //   const navigate = useNavigate();
   const singOut = () => {
@@ -33,7 +32,6 @@ function AuthProvider({ children }: any) {
     <Navigate to="/" replace />;
     window.location.reload();
   };
-  const [note, setNote] = useState([]);
 
   async function fetchNotes() {
     const data = await getNotes();
@@ -67,7 +65,7 @@ function AuthProvider({ children }: any) {
 
   const signOutUser = () => {
     setIsLoading(false);
-    setUserLogged(undefined);
+    setUser(undefined);
     singOut();
   };
 
@@ -99,7 +97,6 @@ function AuthProvider({ children }: any) {
       value={{
         signIn,
         user,
-        userLogged,
         isLoading,
         signOutUser,
         fetchNotes,
