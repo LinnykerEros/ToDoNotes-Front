@@ -1,0 +1,30 @@
+.header {
+  width: 100%;
+  background: #0d0d0d;
+  position: fixed;
+  display: flex;
+  /* justify-content: center; */
+  justify-content: space-between;
+  padding: 1.25rem 0;
+  align-items: center;
+  top: 0;
+  /* margin-bottom: 2rem; */
+  height: 80px;
+}
+
+.signOut {
+  margin-right: 1rem;
+}
+
+.header img {
+  height: 2rem;
+  margin-left: 1rem;
+  cursor: pointer;
+}
+/* .header a {
+   margin-left: 10px;
+ } */
+.header a:hover {
+  cursor: pointer;
+  border-bottom: 3px solid #3182ce;
+}
